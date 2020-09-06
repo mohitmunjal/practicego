@@ -3,13 +3,22 @@
 //package declaration has nothing to do with module name
 package calc
 
+import "errors"
+
 //Add - ...
-func Add(numbers ...int) int {
+func Add(numbers ...int) (error, int) {
 	sum := 0
 
-	for _, num := range numbers {
-		sum = sum + num
+	if len(numbers) < 2 {
+		return errors.New("provide more than 2"), sum
+	} else {
+
+		for _, num := range numbers {
+			sum = sum + num
+		}
+
+		return nil, sum
+
 	}
 
-	return sum
 }
